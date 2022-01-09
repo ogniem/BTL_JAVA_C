@@ -51,6 +51,19 @@ public class DataNv {
 
         CloseFile();
     }
+    public void GhiFile2(List<NhanVien> nhanViens) {
+        try {
+            fileWriter = new FileWriter(filename);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            printWriter = new PrintWriter(bufferedWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (NhanVien nhanvien:nhanViens) {
+            printWriter.println(nhanvien.getMaNV() + "|" + nhanvien.getHoDem() + "|" + nhanvien.getTen() + "|" + nhanvien.getGioiTinh() + "|" + nhanvien.getNamSinh() + "|" + nhanvien.getQueQuan() + "|" + nhanvien.getSDT() + "|" + nhanvien.getMail() + "|" + nhanvien.getChucVu() + "|" + nhanvien.getPhongBan() + "|" + nhanvien.getThamNien());
+        }
+        CloseFile();
+    }
 
     public NhanVien Tach(String data) {
         String[] datas = data.split("\\|");
@@ -62,7 +75,8 @@ public class DataNv {
     public List<NhanVien> ReadNV() {
         OpenRead();
         List<NhanVien> nhanViens = new ArrayList<>();
-        while (scanner.hasNextLine()) {
+        while (scanner.hasNextLine()) //chạy cho đến khi hết file
+        {
             String str = scanner.nextLine();
             NhanVien nhanVien = Tach(str);
             nhanViens.add(nhanVien);
