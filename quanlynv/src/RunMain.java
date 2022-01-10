@@ -48,6 +48,9 @@ public class RunMain {
             }
         } while (chon != 0);
         dataNv.GhiFile2(Data.nhanVienList);
+        System.out.print("Nhấn Enter để tiếp tục....");
+        sc.nextLine();
+        return;
     }
 
     private static void timKiem() {
@@ -113,8 +116,6 @@ public class RunMain {
         sc.nextLine();
         String TenNv = sc.nextLine();
         for (NhanVien i : Data.nhanVienList) {
-            // n
-            //if (i.getTen().indexOf("ang") >= 0
             if (i.getTen().indexOf(TenNv) >= 0) {
                 nhanViens.add(i);
             }

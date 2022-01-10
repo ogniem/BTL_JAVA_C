@@ -62,7 +62,7 @@ public class Menu1 {
         return;
     }
 
-    private static void xemThongKe() {
+    public static void xemThongKe() {
         System.out.println("=========================================================================================================");
         System.out.println("Nhập năm muốn xem: ");
         Calendar m = Calendar.getInstance();
@@ -92,132 +92,141 @@ public class Menu1 {
         String Manv = sc.nextLine();
         for (int i = 0; i < Data.nhanVienList.size(); i++) {
             if (Data.nhanVienList.get(i).getMaNV().equals(Manv)) {
-                NhanVien nhanVien = Data.nhanVienList.get(i);
-                System.out.println("==================");
-                System.out.println("1.Sửa Họ đệm");
-                System.out.println("2.Sửa Tên");
-                System.out.println("3.Sửa Giới tính");
-                System.out.println("4.Sửa Năm sinh");
-                System.out.println("5.Sửa Quê quán");
-                System.out.println("6.Sửa SDT");
-                System.out.println("7.Sửa Email");
-                System.out.println("8.Sửa Chức vụ");
-                System.out.println("9.Sửa Phòng ban");
-                System.out.println("10.Sửa Thâm niên");
-                System.out.println("0.Quay lại");
-                System.out.println("==================");
-                System.out.print("Nhập lựa chọn sửa: ");
                 int chon2;
-                chon2 = sc.nextInt();
-                switch (chon2) {
-                    case 1:
-                        System.out.print("Nhập họ đệm mới: ");
-                        sc.nextLine();
-                        String HoDemNew = sc.nextLine();
-                        nhanVien.setHoDem(HoDemNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 2:
-                        System.out.print("Nhập tên mới: ");
-                        sc.nextLine();
-                        String TenNew = sc.nextLine();
-                        nhanVien.setTen(TenNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 3:
-                        System.out.print("Nhập giới tính mới: ");
-                        sc.nextLine();
-                        String GioiTinhNew = sc.nextLine();
-                        nhanVien.setTen(GioiTinhNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 4:
-                        System.out.print("Nhập năm sinh mới: ");
-                        sc.nextLine();
-                        String NamSinhNew = sc.nextLine();
-                        nhanVien.setTen(NamSinhNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 5:
-                        System.out.print("Nhập quê quán mới: ");
-                        sc.nextLine();
-                        String QueQuanNew = sc.nextLine();
-                        nhanVien.setTen(QueQuanNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 6:
-                        System.out.print("Nhập sđt mới: ");
-                        String SDTNew = sc.nextLine();
-                        nhanVien.setTen(SDTNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 7:
-                        System.out.print("Nhập mail mới: ");
-                        sc.nextLine();
-                        String MailNew = sc.nextLine();
-                        nhanVien.setTen(MailNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 8:
-                        System.out.println("Chọn chức vụ mới: ");
-                        int d = 0;
-                        for (ChucVu j : Data.chucVuList) {
-                            d++;
-                            System.out.println(d + "." + j.getTenChucVu());
-                        }
-                        int chonSo;
-                        System.out.print("Chọn chức vụ số: ");
-                        sc.nextLine();
-                        chonSo = sc.nextInt();
-                        //tìm kiếm chức vụ được chọn
-                        d = 0;
-                        ChucVu chucVus = new ChucVu();
-                        for (ChucVu j : Data.chucVuList) {
-                            d++;
-                            if (d == chonSo) {
-                                String ChucVuNew = j.getMaChucVu();
-                                nhanVien.setChucVu(ChucVuNew);
-                                Data.nhanVienList.set(i, nhanVien);
-                            }
-                        }
+                do{
 
-                        break;
-                    case 9:
-                        System.out.println("Chọn phòng ban mới: ");
-                        int d1 = 0;
-                        for (PhongBan j : Data.phongBanList) {
-                            d1++;
-                            System.out.println(d1 + "." + j.getTenPhong());
-                        }
-                        int chonSo1 ;
-                        System.out.print("Chọn phòng ban số: ");
-                        sc.nextLine();
-                        chonSo1 = sc.nextInt();
-                        //tìm kiếm chức vụ được chọn
-                        d1 = 0;
-                        PhongBan phongBans = new PhongBan();
-                        for (PhongBan j : Data.phongBanList) {
-                            d1++;
-                            if (d1 == chonSo1) {
-                                String PhongBanNew = j.getMaPhongBan();
-                                nhanVien.setPhongBan(PhongBanNew);
-                                Data.nhanVienList.set(i, nhanVien);
+                    NhanVien nhanVien = Data.nhanVienList.get(i);
+                    System.out.println("==================");
+                    System.out.println("1.Sửa Họ đệm");
+                    System.out.println("2.Sửa Tên");
+                    System.out.println("3.Sửa Giới tính");
+                    System.out.println("4.Sửa Năm sinh");
+                    System.out.println("5.Sửa Quê quán");
+                    System.out.println("6.Sửa SDT");
+                    System.out.println("7.Sửa Email");
+                    System.out.println("8.Sửa Chức vụ");
+                    System.out.println("9.Sửa Phòng ban");
+                    System.out.println("10.Sửa Thâm niên");
+                    System.out.println("0.Quay lại");
+                    System.out.println("==================");
+                    System.out.print("Nhập lựa chọn sửa: ");
+                    chon2 = sc.nextInt();
+                    switch (chon2) {
+                        case 1:
+                            System.out.print("Nhập họ đệm mới: ");
+                            sc.nextLine();
+                            String HoDemNew = sc.nextLine();
+                            nhanVien.setHoDem(HoDemNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 2:
+                            System.out.print("Nhập tên mới: ");
+                            sc.nextLine();
+                            String TenNew = sc.nextLine();
+                            nhanVien.setTen(TenNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 3:
+                            System.out.print("Nhập giới tính mới: ");
+                            sc.nextLine();
+                            String GioiTinhNew = sc.nextLine();
+                            nhanVien.setGioiTinh(GioiTinhNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 4:
+                            System.out.print("Nhập năm sinh mới: ");
+                            sc.nextLine();
+                            String NamSinhNew = sc.nextLine();
+                            nhanVien.setNamSinh(NamSinhNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 5:
+                            System.out.print("Nhập quê quán mới: ");
+                            sc.nextLine();
+                            String QueQuanNew = sc.nextLine();
+                            nhanVien.setQueQuan(QueQuanNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 6:
+                            System.out.print("Nhập sđt mới: ");
+                            String SDTNew = sc.nextLine();
+                            nhanVien.setSDT(SDTNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 7:
+                            System.out.print("Nhập mail mới: ");
+                            sc.nextLine();
+                            String MailNew = sc.nextLine();
+                            nhanVien.setMail(MailNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 8:
+                            System.out.println("Chọn chức vụ mới: ");
+                            int d = 0;
+                            for (ChucVu j : Data.chucVuList) {
+                                d++;
+                                System.out.println(d + "." + j.getTenChucVu());
                             }
-                        }
-                        break;
-                    case 10:
-                        System.out.print("Nhập thâm niên mới: ");
-                        sc.nextLine();
-                        String ThamNienNew = sc.nextLine();
-                        nhanVien.setTen(ThamNienNew);
-                        Data.nhanVienList.set(i, nhanVien);
-                        break;
-                    case 0:
-                        break;
-                    default:
-                        System.out.println("Nhập lựa chọn sai");
+                            int chonSo;
+                            System.out.print("Chọn chức vụ số: ");
+                            sc.nextLine();
+                            chonSo = sc.nextInt();
+                            //tìm kiếm chức vụ được chọn
+                            d = 0;
+                            ChucVu chucVus = new ChucVu();
+                            for (ChucVu j : Data.chucVuList) {
+                                d++;
+                                if (d == chonSo) {
+                                    String ChucVuNew = j.getMaChucVu();
+                                    nhanVien.setChucVu(ChucVuNew);
+                                    Data.nhanVienList.set(i, nhanVien);
+                                }
+                            }
 
-                }
+                            break;
+                        case 9:
+                            System.out.println("Chọn phòng ban mới: ");
+                            int d1 = 0;
+                            for (PhongBan j : Data.phongBanList) {
+                                d1++;
+                                System.out.println(d1 + "." + j.getTenPhong());
+                            }
+                            int chonSo1 ;
+                            System.out.print("Chọn phòng ban số: ");
+                            sc.nextLine();
+                            chonSo1 = sc.nextInt();
+                            //tìm kiếm chức vụ được chọn
+                            d1 = 0;
+                            PhongBan phongBans = new PhongBan();
+                            for (PhongBan j : Data.phongBanList) {
+                                d1++;
+                                if (d1 == chonSo1) {
+                                    String PhongBanNew = j.getMaPhongBan();
+                                    nhanVien.setPhongBan(PhongBanNew);
+                                    Data.nhanVienList.set(i, nhanVien);
+                                }
+                            }
+                            break;
+                        case 10:
+                            System.out.print("Nhập thâm niên mới: ");
+                            sc.nextLine();
+                            int ThamNienNew = sc.nextInt();
+                            nhanVien.setThamNien(ThamNienNew);
+                            Data.nhanVienList.set(i, nhanVien);
+                            break;
+                        case 0:
+                            break;
+                        default:
+                            System.out.println("Nhập lựa chọn sai");
+
+                    }
+
+                }while (chon2 !=0);
+
+                System.out.print("Nhấn Enter để tiếp tục....");
+                sc.nextLine();
+                return;
+
             }
 
 
@@ -355,7 +364,10 @@ public class Menu1 {
 
 
             }
-        } while (chonSapXep != 0);
+        } while (chonSapXep != 6);
+        System.out.print("Nhấn Enter để tiếp tục....");
+        sc.nextLine();
+        return;
 
     }
 
@@ -547,7 +559,10 @@ public class Menu1 {
 
 
             }
-        } while (chonLoc != 0);
+        } while (chonLoc != 7);
+        System.out.print("Nhấn Enter để tiếp tục....");
+        sc.nextLine();
+        return;
     }
 
 
