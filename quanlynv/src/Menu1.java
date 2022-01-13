@@ -87,7 +87,9 @@ public class Menu1 {
     }
 
     public static void sua() {
-        sc.nextLine();
+
+      //  sc.nextLine();
+
         System.out.println("Nhập Mã nhân viên muốn sửa: ");
         String Manv = sc.nextLine();
         for (int i = 0; i < Data.nhanVienList.size(); i++) {
@@ -97,16 +99,11 @@ public class Menu1 {
 
                     NhanVien nhanVien = Data.nhanVienList.get(i);
                     System.out.println("==================");
-                    System.out.println("1.Sửa Họ đệm");
-                    System.out.println("2.Sửa Tên");
-                    System.out.println("3.Sửa Giới tính");
-                    System.out.println("4.Sửa Năm sinh");
-                    System.out.println("5.Sửa Quê quán");
-                    System.out.println("6.Sửa SDT");
-                    System.out.println("7.Sửa Email");
-                    System.out.println("8.Sửa Chức vụ");
-                    System.out.println("9.Sửa Phòng ban");
-                    System.out.println("10.Sửa Thâm niên");
+                    System.out.println("1.Sửa Họ đệm                2.Sửa Tên");
+                    System.out.println("3.Sửa Giới tính             4.Sửa Năm sinh");
+                    System.out.println("5.Sửa Quê quán              6.Sửa SDT");
+                    System.out.println("7.Sửa Email                 8.Sửa Chức vụ");
+                    System.out.println("9.Sửa Phòng ban             10.Sửa Thâm niên");
                     System.out.println("0.Quay lại");
                     System.out.println("==================");
                     System.out.print("Nhập lựa chọn sửa: ");
@@ -239,7 +236,7 @@ public class Menu1 {
     public static void them() throws IOException {
         NhanVien nhanVien = new NhanVien();
         Data.nhanVienList = RunMain.dataNv.ReadNV();
-        sc.nextLine();
+       // sc.nextLine();
         System.out.println("Nhập Mã nhân viên: ");
         String MaNV = sc.nextLine();
         nhanVien.setMaNV(MaNV);
@@ -712,8 +709,6 @@ public class Menu1 {
                     }
                     int luong = HeSo * j.getSoNgayLamViec();
                     System.out.format("%-4d %-10d %-10d %-15s %-15d %-15d %-15d\n", d, j.getNam(), j.getThang(), chucVu1, HeSo, j.getSoNgayLamViec(), luong);
-
-
                 }
 
                 System.out.print("Nhấn Enter để tiếp tục....");

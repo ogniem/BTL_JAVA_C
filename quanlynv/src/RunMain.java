@@ -2,60 +2,221 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.*;
+import java.util.regex.Pattern;
 
 public class RunMain {
-
-
     static DataNv dataNv = new DataNv();
     static DataPhongBan dataPhongBan = new DataPhongBan();
     static DataChucVu dataChucVu = new DataChucVu();
     static DataSoNgayLamViec dataSoNgayLamViec = new DataSoNgayLamViec();
     public static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
-        LayDuLieu();
-        Menu1 menu1 = new Menu1();
-        int chon;
-        do {
-            System.out.println("=====================================================================================================================");
-            System.out.println("===============MENU===============");
-            System.out.println("1.Xem danh sách nhân viên");
-            System.out.println("2. Thêm");
-            System.out.println("3.Sửa");
-            System.out.println("4.Tìm kiếm");
-            System.out.println("0.Thoát");
-            System.out.print("Chọn: ");
-            chon = sc.nextInt();
-            switch (chon) {
-                case 1:
-                    menu1.xemDanhSach();
 
+    static List<Account> listAccount = new ArrayList<>();
+    static FileController fileController = new FileController();
+    static Pattern pattern;
+    static final String regexPassword = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$";
+
+    public static void main(String[] args) throws IOException {
+
+        do {
+            System.out.println("\n\t++=======* MENU *=======++	");
+            System.out.println("1. Đăng nhập.");
+            System.out.println("2. Sắp xếp tài khoản theo tên người dùng.   ");
+            System.out.println("3. Thoát.            			");
+            switch (Choose(1, 4)) {
+                case 1:
+                    listAccount = fileController.ReadAccountFromFile("Account.DAT");
+                    String username, password;
+                    System.out.print("Nhập tên tài khoản: ");
+                    username = sc.nextLine();
+                    System.out.print("Nhập mật khẩu: ");
+                    password = sc.nextLine();
+
+                    if (KiemTraDangNhap(username, password)) {
+                        Account account = new Account();
+                        for (int i = 0; i < listAccount.size(); i++)
+                            if (listAccount.get(i).getUserName().compareTo(username) == 0)
+                                account = listAccount.get(i);
+
+
+                        do {
+                            System.out.println("=============================");
+                            System.out.println("1. Đổi mật khẩu. ");
+                            System.out.println("2.Vào chức năng quản lý nhân viên");
+                            System.out.println("3. Thoát          ");
+
+                            switch (Choose(1, 3)) {
+                                case 1:
+                                    DoiMatKhau(username, password, account);
+                                    System.out.println("Mật khẩu của bạn đã được thay đổi");
+                                    break;
+                                case 2:
+                                    LayDuLieu();
+
+                                    Menu1 menu1 = new Menu1();
+                                    int chon;
+                                    do {
+                                        // sc.nextLine();
+                                        System.out.println("=====================================================================================================================");
+                                        System.out.println("===============MENU===============");
+                                        System.out.println("1.Xem danh sách nhân viên");
+                                        System.out.println("2. Thêm");
+                                        System.out.println("3.Sửa");
+                                        System.out.println("4.Tìm kiếm");
+                                        System.out.println("0.Thoát");
+                                        System.out.print("Chọn: ");
+
+                                        chon = sc.nextInt();
+
+                                        switch (chon) {
+                                            case 1:
+
+                                                menu1.xemDanhSach();
+
+                                                break;
+                                            case 2:
+
+                                                menu1.them();
+
+                                                break;
+                                            case 3:
+
+                                                menu1.sua();
+                                                break;
+                                            case 4:
+
+                                                timKiem();
+                                                break;
+                                            case 0:
+                                                System.out.println("Thoát ");
+                                                break;
+                                            default:
+                                                System.out.println("Lựa chọn không hợp lệ");
+                                        }
+                                    } while (chon != 0);
+                                    dataNv.GhiFile2(Data.nhanVienList);
+                                    System.out.print("Nhấn Enter để tiếp tục....");
+                                    sc.nextLine();
+                                    return;
+                                //break;
+                                case 3:
+                                    return;
+
+                                default:
+                                    System.out.println("Lựa chọn không hợp lệ\n");
+
+                            }
+                        } while (true);
+                    } else
+                        System.out.println("Tên hoặc mật khẩu không đúng");
                     break;
+
+
                 case 2:
-                    menu1.them();
+                    listAccount = fileController.ReadAccountFromFile("Account.DAT");
+                    Collections.sort(listAccount);
+                    System.out.format("%-20s ", "Username");
+                    for (int i = 0; i < listAccount.size(); i++)
+                        listAccount.get(i).output();
+                    System.out.println();
                     break;
                 case 3:
-                    menu1.sua();
-                    break;
-                case 4:
-                    timKiem();
-                    break;
-                case 0:
-                    System.out.println("Thoát ");
+                    System.out.println("Đã thoát khỏi chương trình ");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ");
+                    System.out.println("Lựa chọn không hợp lệ\n");
             }
-        } while (chon != 0);
-        dataNv.GhiFile2(Data.nhanVienList);
-        System.out.print("Nhấn Enter để tiếp tục....");
-        sc.nextLine();
-        return;
+        } while (true);
+    }
+
+    // Enter choose
+    public static int Choose(int a, int b) {
+        int choose;
+        do {
+            try {
+                do {
+                    System.out.print("\nNhập lựa chọn: ");
+                    choose = Integer.parseInt(sc.nextLine());
+                    if (choose < a || choose > b)
+                        System.out.println("Lựa chọn không chính xác");
+                } while (choose < a || choose > b);
+                return choose;
+            } catch (NumberFormatException e) {
+                System.out.println("Dữ liệu không hợp lệ");
+            }
+        } while (true);
+    }
+
+    // Check username passwork login
+    public static boolean KiemTraDangNhap(String username, String password) {
+        listAccount = fileController.ReadAccountFromFile("Account.DAT");
+        for (int i = 0; i < listAccount.size(); i++)
+            if (listAccount.get(i).getUserName().compareTo(username) == 0
+                    && listAccount.get(i).getPassword().compareTo(password) == 0)
+                return true;
+        return false;
+    }
+
+//    //check exist user name
+//    public static boolean checkExistUsername(String username) {
+//        listAccount = fileController.ReadAccountFromFile("Account.DAT");
+//        for (int i = 0; i < listAccount.size(); i++)
+//            if (listAccount.get(i).getUserName().compareTo(username) == 0)
+//                return true;
+//        return false;
+//    }
+
+
+    public static void DoiMatKhau(String username, String oldPassword, Account account) {
+        String checkOldPassword, newPassword, confirmNewPassword;
+        // Enter old password
+        do {
+            System.out.print("\tNhập mật khẩu cũ: ");
+            checkOldPassword = sc.nextLine();
+
+            if (checkOldPassword.compareTo(oldPassword) != 0)
+                System.out.println("Mật khẩu cũ không hợp lệ");
+            else
+                break;
+        } while (true);
+
+        // Nhập mk mới
+        do {
+            System.out.print("\tNhập mật khẩu mới: ");
+            newPassword = sc.nextLine();
+
+            pattern = Pattern.compile(regexPassword);
+            if (newPassword.compareTo(checkOldPassword) == 0)
+                System.out.println("Mật khẩu mới và mật khẩu cũ không được trùng nhau");
+            else
+                break;
+        } while (true);
+        // Xác nhận lại mk
+        do {
+            System.out.print("\tXác nhận lại mật khẩu mới: ");
+            confirmNewPassword = sc.nextLine();
+            if (newPassword.compareTo(confirmNewPassword) != 0)
+                System.out.println("Mật khẩu và mật khẩu xác nhận không khớp");
+            else
+                break;
+        } while (true);
+
+        // cập nhật lại mật khẩu
+        account.setPassword(newPassword);
+        for (int i = 0; i < listAccount.size(); i++)
+            if (listAccount.get(i).getUserName().compareTo(username) == 0) {
+                listAccount.set(i, account);
+                break;
+            }
+        fileController.UpdateAccountFile(listAccount, "Account.DAT");
     }
 
     private static void timKiem() {
-        int chonTimKiem ;
-        do{
+        int chonTimKiem;
+        do {
             System.out.println("=============Menu Tìm kiếm==============");
             System.out.println("Lựa chọn tìm kiếm theo: ");
             System.out.println("1.Chức vụ                 2.Tên phòng ban");
@@ -63,8 +224,8 @@ public class RunMain {
             System.out.println("5.Tên                     6.Mã nhân viên");
             System.out.println("7.Thoát khỏi tìm kiếm");
             System.out.print("Nhập lựa chọn tìm kiếm: ");
-            chonTimKiem= sc.nextInt();
-            switch (chonTimKiem){
+            chonTimKiem = sc.nextInt();
+            switch (chonTimKiem) {
                 case 1:
                     timKiemChucVu();
                     break;
@@ -93,7 +254,7 @@ public class RunMain {
             System.out.print("Nhấn Enter để tiếp tục....");
             sc.nextLine();
             return;
-        }while (chonTimKiem != 7);
+        } while (chonTimKiem != 7);
 
     }
 
@@ -216,6 +377,6 @@ public class RunMain {
     }
 
 
-
-
 }
+
+

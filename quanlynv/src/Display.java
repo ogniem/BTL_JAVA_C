@@ -1,14 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Display {
     public static void ShowNhanVien(List<NhanVien> nhanViens, List<ChucVu> chucVus, List<PhongBan> phongBans, List<SoNgayLam> soNgayLams) {
-        System.out.format("%-4s%-15s%-15s%-10s%-10s%-10s%-15s%-10s    %-20s%-15s%-15s%-10s   %-18s\n", "Stt", "Mã Nhân viên"
+        System.out.println("================================================================================================================================================================================");
+      //  System.out.println("________________________________________________________________________________________________________________________________________________________________________________");
+        System.out.format("|%-3s|%-14s|%-14s|%-8s|%-10s|%-10s|%-15s|%-10s    |%-20s|%-14s|%-12s|%-10s   |%-15s|\n", "Stt", " Mã Nhân viên"
                 , "Họ đệm", "Tên", "Giới tính", "Năm sinh", "Quê quán", "Sđt", "Mail", "Chức Vụ", "Phòng ban", "Thâm niên", "Lương(" + Data.Thang + "/" + Data.Nam + ")");
         int d = 0;
         //  System.out.println(Data.Thang+", "+ Data.Nam);
         for (NhanVien i : nhanViens) {
             d++;
+            String s ="";
+            if(d<10){
+                s=" ";
+            }
             ChucVu chucVu = TimChucVu(i.getChucVu(), chucVus);
             PhongBan phongBan = TimPhongBan(i.getPhongBan(), phongBans);
             SoNgayLam soNgayLam = TimThangLuong(i.getMaNV(), soNgayLams);
@@ -20,12 +27,20 @@ public class Display {
                 }
             }
             int luong = HeSo * soNgayLam.getSoNgayLamViec();
+            System.out.println("================================================================================================================================================================================");
 
-            System.out.format("%-4d%-15s%-15s%-10s%-10s%-10s%-15s%-10s    %-20s%-15s%-15s%-10d%15d\n", d, i.getMaNV()
-                    , i.getHoDem(), i.getTen(), i.getGioiTinh(), i.getNamSinh(), i.getQueQuan(), i.getSDT(),
+            System.out.format("|%-3s|%-14s|%-14s|%-8s|%-10s|%-10s|%-15s|%-10s    |%-20s|%-14s|%-12s|%-10d   |%-15d|\n", s+String.valueOf(d), "    "+i.getMaNV()
+                    , i.getHoDem(), i.getTen(), i.getGioiTinh(),"   "+ i.getNamSinh(), i.getQueQuan(), i.getSDT(),
                     i.getMail(), chucVu.getTenChucVu(), phongBan.getTenPhong(), i.getThamNien(), luong);
 
         }
+        System.out.println("================================================================================================================================================================================");
+
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhấn Enter để tiếp tục");
+        sc.nextLine();
+
 
     }
 
