@@ -78,7 +78,8 @@ public class RunMain {
                                                 break;
                                             case 2:
 
-                                                menu1.them();
+                                                menu1.
+                                                        them();
 
                                                 break;
                                             case 3:
