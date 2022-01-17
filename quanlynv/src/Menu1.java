@@ -20,15 +20,15 @@ public class Menu1 {
         Display.ShowNhanVien(Data.nhanVienList, Data.chucVuList, Data.phongBanList, Data.soNgayLamViecList);
         int chon;
         do {
-            System.out.println("===================================================================================================");
-            System.out.println("=====================MENU1=====================");
-            System.out.println("0.Xem thống kê");
-            System.out.println("1.Xem chi tiết");
-            System.out.println("2.Thêm");
-            System.out.println("3.Sửa");
-            System.out.println("4.Lọc");
-            System.out.println("5.Sắp xếp");
-            System.out.println("6.Quay lại");
+            System.out.println("\n=====================MENU1=====================");
+            System.out.println("0. Xem thống kê");
+            System.out.println("1. Xem chi tiết");
+            System.out.println("2. Thêm");
+            System.out.println("3. Sửa");
+            System.out.println("4. Lọc");
+            System.out.println("5. Sắp xếp");
+            System.out.println("6. Quay lại");
+            System.out.println("================================================");
             System.out.print("Chọn: ");
             chon = sc.nextInt();
             switch (chon) {
@@ -64,7 +64,7 @@ public class Menu1 {
     }
 
     public static void xemThongKe() {
-        System.out.println("=========================================================================================================");
+        System.out.println("=================================================================");
         System.out.println("Nhập năm muốn xem: ");
         Calendar m = Calendar.getInstance();
         int nam = sc.nextInt();
@@ -119,14 +119,14 @@ public class Menu1 {
                         do {
 
                             NhanVien nhanVien = Data.nhanVienList.get(i);
-                            System.out.println("==================");
+                            System.out.println("=================================================");
                             System.out.println("1.Sửa Họ đệm                2.Sửa Tên");
                             System.out.println("3.Sửa Giới tính             4.Sửa Năm sinh");
                             System.out.println("5.Sửa Quê quán              6.Sửa SDT");
                             System.out.println("7.Sửa Email                 8.Sửa Chức vụ");
                             System.out.println("9.Sửa Phòng ban             10.Sửa Thâm niên");
                             System.out.println("0.Quay lại");
-                            System.out.println("==================");
+                            System.out.println("=================================================");
                             System.out.print("Nhập lựa chọn sửa: ");
                             chon2 = sc.nextInt();
                             switch (chon2) {
@@ -369,11 +369,11 @@ public class Menu1 {
         DataLichSu dataLichSu = new DataLichSu();
         int chonSapXep;
         do {
-            System.out.println("================Menu sắp xếp==========");
-            System.out.println("1.Sắp xếp theo tên                 2.Sắp xếp theo chức vụ ");
-            System.out.println("3.Sắp xếp theo thâm niên           4.Sắp xếp theo năm sinh");
-            System.out.println("5.Quay lại");
-
+            System.out.println("================Menu sắp xếp===================================");
+            System.out.println("1. Sắp xếp theo tên                 2. Sắp xếp theo chức vụ ");
+            System.out.println("3. Sắp xếp theo thâm niên           4. Sắp xếp theo năm sinh");
+            System.out.println("5. Quay lại");
+            System.out.println("===============================================================");
             System.out.println("Nhập lựa chọn: ");
             chonSapXep = sc.nextInt();
             switch (chonSapXep) {
@@ -412,8 +412,9 @@ public class Menu1 {
     private static void xepTheoNamSinh() {
         System.out.println("==========Sắp xếp theo năm sinh========");
         System.out.println("1.Tăng");
-        System.out.println("2,Giảm");
+        System.out.println("2.Giảm");
         System.out.println("Chọn phím khác để thoát");
+        System.out.println("=======================================");
         int chon;
         chon = sc.nextInt();
         List<NhanVien> nhanViens = Data.nhanVienList;
@@ -446,8 +447,9 @@ public class Menu1 {
     private static void xepTheoThamNien() {
         System.out.println("==========Sắp xếp theo thâm niên========");
         System.out.println("1.Tăng");
-        System.out.println("2,Giảm");
+        System.out.println("2.Giảm");
         System.out.println("Chọn phím khác để thoát");
+        System.out.println("========================================");
         int chon;
         chon = sc.nextInt();
         List<NhanVien> nhanViens = Data.nhanVienList;
@@ -487,8 +489,9 @@ public class Menu1 {
     private static void xepTheoChucVu() {
         System.out.println("==========Sắp xếp theo chức vụ========");
         System.out.println("1.Tăng");
-        System.out.println("2,Giảm");
+        System.out.println("2.Giảm");
         System.out.println("Chọn phím khác để thoát");
+        System.out.println("======================================");
         int chon;
         chon = sc.nextInt();
         List<NhanVien> nhanViens = Data.nhanVienList;
@@ -522,8 +525,9 @@ public class Menu1 {
     private static void xepTheoTen() {
         System.out.println("==========Sắp xếp theo tên========");
         System.out.println("1.Tăng");
-        System.out.println("2,Giảm");
+        System.out.println("2.Giảm");
         System.out.println("Chọn phím khác để thoát");
+        System.out.println("==================================");
         int chon;
         chon = sc.nextInt();
         List<NhanVien> nhanViens = Data.nhanVienList;
@@ -558,11 +562,12 @@ public class Menu1 {
     public static void loc() {
         int chonLoc;
         do {
-            System.out.println("================Menu lọc==========");
-            System.out.println("1.Lọc theo quê quán            2.Lọc theo năm sinh ");
-            System.out.println("3.Lọc theo giới tính           4.Lọc theo phòng ban");
-            System.out.println("5.Lọc theo chức vụ             6.Lọc theo thâm niên");
-            System.out.println("7.Quay lại");
+            System.out.println("=========================Menu lọc=========================");
+            System.out.println("1. Lọc theo quê quán            2. Lọc theo năm sinh ");
+            System.out.println("3. Lọc theo giới tính           4. Lọc theo phòng ban");
+            System.out.println("5. Lọc theo chức vụ             6. Lọc theo thâm niên");
+            System.out.println("7. Quay lại");
+            System.out.println("==========================================================");
 
             System.out.println("Nhập lựa chọn: ");
             chonLoc = sc.nextInt();
@@ -725,7 +730,7 @@ public class Menu1 {
                 ChucVu chucVu = Display.TimChucVu(i.getChucVu(), Data.chucVuList);
                 PhongBan phongBan = Display.TimPhongBan(i.getPhongBan(), Data.phongBanList);
                 List<SoNgayLam> soNgayLams = Display.TimTatCaThangLuong(i.getMaNV(), Data.soNgayLamViecList);
-                System.out.println("=================Thông tin nhân viên==============");
+                System.out.println("================================Thông tin nhân viên================================");
                 System.out.println("Mã Nv: " + i.getMaNV());
                 System.out.println("Họ và tên: " + i.getHoDem() + " " + i.getTen());
                 System.out.println("Giới tính: " + i.getGioiTinh() + "       Năm sinh: " + i.getNamSinh());
@@ -734,6 +739,7 @@ public class Menu1 {
                 System.out.println("Chức vụ: " + chucVu.getTenChucVu() + " Hệ số lương: " + chucVu.getHeSoLuong());
                 System.out.println("Phòng ban: " + phongBan.getTenPhong() + " Trưởng phòng: " + phongBan.getTenTruongPhong());
                 System.out.println("Thâm niên: " + i.getThamNien() + " tháng");
+                System.out.println("====================================================================================");
          //       System.out.format("%-4s %-10s %-10s %-15s %-15s %-15s %-15s\n", "stt", "Năm", "Tháng", "Chức vụ", "Hệ số lương", "Số ngày làm", "Lương");
                 int d = 0;
                 for (SoNgayLam j : soNgayLams) {

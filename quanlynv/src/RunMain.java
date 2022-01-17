@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class RunMain {
     static DataNv dataNv = new DataNv();
@@ -16,15 +15,14 @@ public class RunMain {
 
     static List<Account> listAccount = new ArrayList<>();
     static FileController fileController = new FileController();
-    static Pattern pattern;
-  //  static final String regexPassword = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$";
 
     public static void main(String[] args) throws IOException {
 
         do {
             System.out.println("\n\t++=======* MENU *=======++	");
-            System.out.println("1. Đăng nhập.");
-            System.out.println("2. Thoát.            			");
+            System.out.println("           1. Đăng nhập.");
+            System.out.println("           2. Thoát.            			");
+            System.out.println("================================");
             switch (Choose(1, 2)) {
                 case 1:
                     listAccount = fileController.ReadAccountFromFile("Account.DAT");
@@ -42,11 +40,12 @@ public class RunMain {
 
 
                         do {
-                            System.out.println("=============================================================================");
+                            System.out.println("===============================================");
                             System.out.println("1. Đổi mật khẩu. ");
-                            System.out.println("2.Vào chức năng quản lý nhân viên");
-                            System.out.println("3.Xem lịch sử quản lý");
+                            System.out.println("2. Vào chức năng quản lý nhân viên");
+                            System.out.println("3. Xem lịch sử quản lý");
                             System.out.println("4. Thoát          ");
+                            System.out.println("===============================================");
 
                             switch (Choose(1, 4)) {
                                 case 1:
@@ -60,13 +59,13 @@ public class RunMain {
                                     int chon;
                                     do {
                                         // sc.nextLine();
-                                        System.out.println("=====================================================================================================================");
-                                        System.out.println("===============MENU===============");
-                                        System.out.println("1.Xem danh sách nhân viên");
+                                        System.out.println("\n===============MENU===============");
+                                        System.out.println("1. Xem danh sách nhân viên");
                                         System.out.println("2. Thêm");
-                                        System.out.println("3.Sửa");
-                                        System.out.println("4.Tìm kiếm");
-                                        System.out.println("0.Thoát");
+                                        System.out.println("3. Sửa");
+                                        System.out.println("4. Tìm kiếm");
+                                        System.out.println("0. Thoát");
+                                        System.out.println("==================================");
                                         System.out.print("Chọn: ");
 
                                         chon = sc.nextInt();
@@ -103,8 +102,7 @@ public class RunMain {
                                     return;
                                 //break;
                                 case 3:
-                                    System.out.println("=========================================================");
-                                    System.out.println("Lich sử:");
+                                    System.out.println("=================Lịch sử======================");
                                     System.out.println(dataLichSu.ReadNV());
                                     System.out.println("Nhấn Enter để tiêp tục");
                                     sc.nextLine();
@@ -182,8 +180,6 @@ public class RunMain {
         do {
             System.out.print("\tNhập mật khẩu mới: ");
             newPassword = sc.nextLine();
-
-          //  pattern = Pattern.compile(regexPassword);
             if (newPassword.compareTo(checkOldPassword) == 0)
                 System.out.println("Mật khẩu mới và mật khẩu cũ không được trùng nhau");
             else
@@ -214,10 +210,11 @@ public class RunMain {
         do {
             System.out.println("=============Menu Tìm kiếm==============");
             System.out.println("Lựa chọn tìm kiếm theo: ");
-            System.out.println("1.Chức vụ                 2.Tên phòng ban");
-            System.out.println("3.Quê quán                4.Năm sinh");
-            System.out.println("5.Tên                     6.Mã nhân viên");
-            System.out.println("7.Thoát khỏi tìm kiếm");
+            System.out.println("1. Chức vụ                 2. Tên phòng ban");
+            System.out.println("3. Quê quán                4. Năm sinh");
+            System.out.println("5. Tên                     6. Mã nhân viên");
+            System.out.println("7. Thoát khỏi tìm kiếm");
+            System.out.println("========================================");
             System.out.print("Nhập lựa chọn tìm kiếm: ");
             chonTimKiem = sc.nextInt();
             switch (chonTimKiem) {
