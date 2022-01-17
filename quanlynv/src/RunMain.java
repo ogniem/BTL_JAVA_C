@@ -327,7 +327,7 @@ public class RunMain {
         //Tách nhân viên có chức vụ được chọn
         List<NhanVien> nhanViens = new ArrayList<>();
         for (NhanVien i : Data.nhanVienList) {
-            if (i.getChucVu().equals(phongBans.getMaPhongBan())) {
+            if (i.getPhongBan().equals(phongBans.getMaPhongBan())) {
                 nhanViens.add(i);
             }
         }

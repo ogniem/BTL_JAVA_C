@@ -366,6 +366,7 @@ public class Menu1 {
     //==============================================================  5.Sắp xếp     ===========================================================================
 
     private static void sapXep() {
+        DataLichSu dataLichSu = new DataLichSu();
         int chonSapXep;
         do {
             System.out.println("================Menu sắp xếp==========");
@@ -378,15 +379,19 @@ public class Menu1 {
             switch (chonSapXep) {
                 case 1:
                     xepTheoTen();
+                    dataLichSu.GhiFile("Đã sắp xếp danh sách theo tên");
                     break;
                 case 2:
                     xepTheoChucVu();
+                    dataLichSu.GhiFile("Đã sắp xếp danh sách theo chức vụ");
                     break;
                 case 3:
                     xepTheoThamNien();
+                    dataLichSu.GhiFile("Đã sắp xếp danh sách theo thâm niên");
                     break;
                 case 4:
                     xepTheoNamSinh();
+                    dataLichSu.GhiFile("Đã sắp xếp danh sách theo năm sinh");
                     break;
                 case 5:
 
@@ -397,6 +402,7 @@ public class Menu1 {
 
             }
         } while (chonSapXep != 5);
+
         System.out.print("Nhấn Enter để tiếp tục....");
         sc.nextLine();
         return;
@@ -710,6 +716,7 @@ public class Menu1 {
     //==============================================================   1.Xem chi tiết     ===========================================================================
 
     public static void xemChiTiet() {
+        DataLichSu dataLichSu = new DataLichSu();
         System.out.println("Nhập mã nhân viên muốn xem chi tiết: ");
         sc.nextLine();
         String MaNV = sc.nextLine();
@@ -743,6 +750,7 @@ public class Menu1 {
             //        System.out.format("%-4d %-10d %-10d %-15s %-15d %-15d %-15d\n", d, j.getNam(), j.getThang(), chucVu1, HeSo, j.getSoNgayLamViec(), luong);
                 }
 
+                dataLichSu.GhiFile("Đã xem chi tiết nhân viên có mã "+ MaNV);
                 System.out.print("Nhấn Enter để tiếp tục....");
                 sc.nextLine();
                 return;
