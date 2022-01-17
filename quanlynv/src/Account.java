@@ -1,3 +1,7 @@
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
 
 public class Account implements Comparable<Account> {
     private String userName;
@@ -7,7 +11,8 @@ public class Account implements Comparable<Account> {
         System.out.format("%-20s ", userName);
     }
 
-    public Account() {
+    public Account(){
+
     }
 
     public Account(String userName,
@@ -32,6 +37,7 @@ public class Account implements Comparable<Account> {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
 
     @Override

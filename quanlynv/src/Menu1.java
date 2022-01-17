@@ -60,7 +60,7 @@ public class Menu1 {
 
         System.out.print("Nhấn Enter để tiếp tục....");
         sc.nextLine();
-        return;
+     //   return;
     }
 
     public static void xemThongKe() {
@@ -91,9 +91,11 @@ public class Menu1 {
     public static void sua() {
 
         //  sc.nextLine();
+        DataLichSu dataLichSu = new DataLichSu();
         listAccount = fileController.ReadAccountFromFile("Account.DAT");
         System.out.println("Đăng nhập để sửa: ");
         String username, password;
+        sc.nextLine();
         System.out.print("Nhập tên tài khoản: ");
         username = sc.nextLine();
         System.out.print("Nhập mật khẩu: ");
@@ -238,6 +240,7 @@ public class Menu1 {
                             }
 
                         } while (chon2 != 0);
+                        dataLichSu.GhiFile("Sửa thông tin nhân viên  " + Manv);
 
                         System.out.print("Nhấn Enter để tiếp tục....");
                         sc.nextLine();
@@ -247,15 +250,18 @@ public class Menu1 {
 
 
                 }
-
             }
-        else
-                System.out.println("Đăng nhập sửa không thành công");
+//            } else
+//
+//                System.out.println("Đăng nhập sửa không thành công!");
+
+
     }
 
 
     //============================================================2.Thêm===============================================================================
     public static void them() throws IOException {
+        DataLichSu dataLichSu = new DataLichSu();
         NhanVien nhanVien = new NhanVien();
         Data.nhanVienList = RunMain.dataNv.ReadNV();
         sc.nextLine();
@@ -266,94 +272,96 @@ public class Menu1 {
         for (NhanVien t : Data.nhanVienList) {
             if (t.getMaNV().equals(MaNV)) {
                 System.out.println("Mã nhân viên đã tồn tại");
-                break;
-            }
-            else {
-                System.out.println("Nhập Họ đệm: ");
-                String HoDem = sc.nextLine();
-                nhanVien.setHoDem(HoDem);
-
-                System.out.println("Nhập Tên: ");
-                String Ten = sc.nextLine();
-                nhanVien.setTen(Ten);
-
-                System.out.println("Nhập Giới tính: ");
-                String GioiTinh = sc.nextLine();
-                nhanVien.setGioiTinh(GioiTinh);
-
-                System.out.println("Nhập Năm sinh: ");
-                String NamSinh = sc.nextLine();
-                nhanVien.setNamSinh(NamSinh);
-
-                System.out.println("Nhập Quê quán: ");
-                String QueQuan = sc.nextLine();
-                nhanVien.setQueQuan(QueQuan);
-
-                System.out.println("Nhập Sđt: ");
-                String SDT = sc.nextLine();
-                nhanVien.setSDT(SDT);
-
-                System.out.println("Nhập mail: ");
-                String mail = sc.nextLine();
-                nhanVien.setMail(mail);
-
-                System.out.println("Chọn chức vụ: ");
-                System.out.println("Danh sách chức vụ: ");
-                int d1 = 0;
-                for (ChucVu i : Data.chucVuList) {
-                    d1++;
-                    System.out.println(d1 + "." + i.getTenChucVu());
-                }
-                int chonSo1;
-                System.out.print("Chọn chức vụ số: ");
-                chonSo1 = sc.nextInt();
-                //tìm kiếm chức vụ được chọn
-                d1 = 0;
-                ChucVu chucVus = new ChucVu();
-                for (ChucVu i : Data.chucVuList) {
-                    d1++;
-                    if (d1 == chonSo1)
-                        nhanVien.setChucVu(i.getMaChucVu());
-                }
-                //String ChucVu = sc.nextLine();
-
-
-                System.out.println("Chọn Phòng ban: ");
-                System.out.println("Danh sách phòng ban: ");
-                int d = 0;
-                for (PhongBan i : Data.phongBanList) {
-                    d++;
-                    System.out.println(d + "." + i.getTenPhong());
-                }
-                int chonSo;
-                System.out.print("Chọn phòng ban số: ");
-                chonSo = sc.nextInt();
-                //tìm kiếm phòng ban được chọn
-                d = 0;
-                PhongBan phongBans = new PhongBan();
-                for (PhongBan i : Data.phongBanList) {
-                    d++;
-                    if (d == chonSo)
-                        nhanVien.setPhongBan(i.getMaPhongBan());
-                }
-
-
-                System.out.println("Nhập Thâm niên: ");
-                int ThamNien = sc.nextInt();
-                nhanVien.setThamNien(ThamNien);
-
-                Data.nhanVienList.add(nhanVien);
-                DataNv dataNv = new DataNv();
-                dataNv.GhiFile(nhanVien);
-                RunMain.LayDuLieu();
-                Display.ShowNhanVien(Data.nhanVienList, Data.chucVuList, Data.phongBanList, Data.soNgayLamViecList);
-
-
+                return;
             }
         }
+        {
+            System.out.println("Nhập Họ đệm: ");
+            String HoDem = sc.nextLine();
+            nhanVien.setHoDem(HoDem);
+
+            System.out.println("Nhập Tên: ");
+            String Ten = sc.nextLine();
+            nhanVien.setTen(Ten);
+
+            System.out.println("Nhập Giới tính: ");
+            String GioiTinh = sc.nextLine();
+            nhanVien.setGioiTinh(GioiTinh);
+
+            System.out.println("Nhập Năm sinh: ");
+            String NamSinh = sc.nextLine();
+            nhanVien.setNamSinh(NamSinh);
+
+            System.out.println("Nhập Quê quán: ");
+            String QueQuan = sc.nextLine();
+            nhanVien.setQueQuan(QueQuan);
+
+            System.out.println("Nhập Sđt: ");
+            String SDT = sc.nextLine();
+            nhanVien.setSDT(SDT);
+
+            System.out.println("Nhập mail: ");
+            String mail = sc.nextLine();
+            nhanVien.setMail(mail);
+
+            System.out.println("Chọn chức vụ: ");
+            System.out.println("Danh sách chức vụ: ");
+            int d1 = 0;
+            for (ChucVu i : Data.chucVuList) {
+                d1++;
+                System.out.println(d1 + "." + i.getTenChucVu());
+            }
+            int chonSo1;
+            System.out.print("Chọn chức vụ số: ");
+            chonSo1 = sc.nextInt();
+            //tìm kiếm chức vụ được chọn
+            d1 = 0;
+            ChucVu chucVus = new ChucVu();
+            for (ChucVu i : Data.chucVuList) {
+                d1++;
+                if (d1 == chonSo1)
+                    nhanVien.setChucVu(i.getMaChucVu());
+            }
+            //String ChucVu = sc.nextLine();
 
 
+            System.out.println("Chọn Phòng ban: ");
+            System.out.println("Danh sách phòng ban: ");
+            int d = 0;
+            for (PhongBan i : Data.phongBanList) {
+                d++;
+                System.out.println(d + "." + i.getTenPhong());
+            }
+            int chonSo;
+            System.out.print("Chọn phòng ban số: ");
+            chonSo = sc.nextInt();
+            //tìm kiếm phòng ban được chọn
+            d = 0;
+            PhongBan phongBans = new PhongBan();
+            for (PhongBan i : Data.phongBanList) {
+                d++;
+                if (d == chonSo)
+                    nhanVien.setPhongBan(i.getMaPhongBan());
+            }
+
+
+            System.out.println("Nhập Thâm niên: ");
+            int ThamNien = sc.nextInt();
+            nhanVien.setThamNien(ThamNien);
+
+            Data.nhanVienList.add(nhanVien);
+            DataNv dataNv = new DataNv();
+            dataNv.GhiFile(nhanVien);
+            RunMain.LayDuLieu();
+            System.out.println("Đã thêm thành công ");
+            Display.ShowNhanVien(Data.nhanVienList, Data.chucVuList, Data.phongBanList, Data.soNgayLamViecList);
+
+            dataLichSu.GhiFile("Đã thêm nhân viên " + nhanVien.getMaNV());
+
+
+        }
     }
+
 
     //==============================================================  5.Sắp xếp     ===========================================================================
 
@@ -363,8 +371,7 @@ public class Menu1 {
             System.out.println("================Menu sắp xếp==========");
             System.out.println("1.Sắp xếp theo tên                 2.Sắp xếp theo chức vụ ");
             System.out.println("3.Sắp xếp theo thâm niên           4.Sắp xếp theo năm sinh");
-            System.out.println("5.Sắp xếp theo lương            ");
-            System.out.println("6.Quay lại");
+            System.out.println("5.Quay lại");
 
             System.out.println("Nhập lựa chọn: ");
             chonSapXep = sc.nextInt();
@@ -381,11 +388,7 @@ public class Menu1 {
                 case 4:
                     xepTheoNamSinh();
                     break;
-
                 case 5:
-                    xepTheoLuong();
-                    break;
-                case 6:
 
                     break;
                 default:
@@ -393,14 +396,11 @@ public class Menu1 {
 
 
             }
-        } while (chonSapXep != 6);
+        } while (chonSapXep != 5);
         System.out.print("Nhấn Enter để tiếp tục....");
         sc.nextLine();
         return;
 
-    }
-
-    private static void xepTheoLuong() {
     }
 
     private static void xepTheoNamSinh() {
@@ -727,7 +727,7 @@ public class Menu1 {
                 System.out.println("Chức vụ: " + chucVu.getTenChucVu() + " Hệ số lương: " + chucVu.getHeSoLuong());
                 System.out.println("Phòng ban: " + phongBan.getTenPhong() + " Trưởng phòng: " + phongBan.getTenTruongPhong());
                 System.out.println("Thâm niên: " + i.getThamNien() + " tháng");
-                System.out.format("%-4s %-10s %-10s %-15s %-15s %-15s %-15s\n", "stt", "Năm", "Tháng", "Chức vụ", "Hệ số lương", "Số ngày làm", "Lương");
+         //       System.out.format("%-4s %-10s %-10s %-15s %-15s %-15s %-15s\n", "stt", "Năm", "Tháng", "Chức vụ", "Hệ số lương", "Số ngày làm", "Lương");
                 int d = 0;
                 for (SoNgayLam j : soNgayLams) {
                     d++;
@@ -740,7 +740,7 @@ public class Menu1 {
                         }
                     }
                     int luong = HeSo * j.getSoNgayLamViec();
-                    System.out.format("%-4d %-10d %-10d %-15s %-15d %-15d %-15d\n", d, j.getNam(), j.getThang(), chucVu1, HeSo, j.getSoNgayLamViec(), luong);
+            //        System.out.format("%-4d %-10d %-10d %-15s %-15d %-15d %-15d\n", d, j.getNam(), j.getThang(), chucVu1, HeSo, j.getSoNgayLamViec(), luong);
                 }
 
                 System.out.print("Nhấn Enter để tiếp tục....");
